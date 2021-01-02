@@ -1,0 +1,41 @@
+body {
+    background-image: url("https://www.casino.org/blog/wp-content/uploads/c2e1dca621b4e24408fdd18aef86fdba.jpg");
+}
+
+.title {
+    text-align: center;
+    margin-right: 24.5%;
+    margin-left: 24.5%;
+    padding: 20px;
+    font-size: 75px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:black;
+    background-color: rgb(243, 217, 213);
+}
+
+.game {
+    margin: auto;
+    width: 50%;
+    background-color: lightgoldenrodyellow;
+    padding: 10px;
+}
+
+.dealer {
+    font-size: 30px;
+}
+
+.player {
+    font-size: 30px;
+}
+
+.hitBtn {
+    font-size: 18px;
+}
+
+.stayBtn {
+    font-size: 18px;
+}
+
+.pAgainBtn {
+    font-size: 18px;
+}
