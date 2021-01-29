@@ -1,63 +1,58 @@
 $(function(){
 
-    let set = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
-    let deck = [];
     let dCards = [];
     let oneCard = [];
     let pCards = [];
     let winner = 0;
+    let dTotal= 0;
+    let dTotals = 0;
+    let pTotal = 0;
+
 
     //Create the deck
-    for(let i = 0; i < set.length; i++){
-        deck.push(set[i]);
-        deck.push(set[i]);
-        deck.push(set[i]);
-        deck.push(set[i]);
-    }
+    function createDeck(){
+        let set = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+        let deck = [];
 
-
-    //Check deck
-    for(let i= 0; i < deck.length; i++){
-        if(deck[i] === "A"){
-            //console.log("A : 1 or 11");
+        for(let i = 0; i < set.length; i++){
+            deck.push(set[i]);
+            deck.push(set[i]);
+            deck.push(set[i]);
+            deck.push(set[i]);
         }
-        else if(deck[i] === "J" || deck[i] ==="Q" || deck[i] ==="K"){
-            //console.log(deck[i],": 10");
-        }
-        else{
-            //console.log(deck[i]);
-        }
+        return deck;
     }
-
-    function printArray(array){
-        for(let i = 0; i < array.length; i++){
-            console.log(array[i]);
-        }
-    }
+    
 
     //Deal cards
-    function Deal(){
+    function dealDealer(){
         dCards.push(deck[Math.floor(Math.random() * deck.length)]);
         dCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        oneCard[0] = dCards[0];
-
-        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
+        return dCards;
     }
 
-    //Check for ace and face cards
-    function checkCards(card){
-        for(let i = 0; i < card.length; i++){
-            if(card[i] === "A"){
-                card[i] = 11;
+    function dealPlayer (){
+        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
+        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
+        return pCards;
+    }
+    
+
+    //Convert cards to numeric value
+    function convertCards(cards){
+        let hand = [];
+        for(let i = 0; i < cards.length; i++){
+            if(cards[i] === "A"){
+                hand.push(11);
             }
-            else if(card[i] === "J" || card[i] ==="Q" || card[i] ==="K"){
-                card[i] = 10;
+            else if(cards[i] === "J" || cards[i] ==="Q" || cards[i] ==="K"){
+                hand.push(10);
             }
-            else card[i] = parseInt(card[i]);
+            else hand.push(parseInt(cards[i]));
         }
-        return card;
+        return hand;
     }
+
 
     //Check for aces and bust
     function checkTotal(cards){
@@ -97,9 +92,10 @@ $(function(){
     //Player hit
     function pHit(){
         pCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        checkCards(pCards);
+        pCards = convertCards(pCards);
         pTotal = checkTotal(pCards);
         console.log(pCards);
+        console.log(pTotal);
         document.getElementById("pcard").innerHTML = pCards;
         document.getElementById("ptotal").innerHTML = pTotal;
     }
@@ -109,9 +105,8 @@ $(function(){
         //Dealer hits until higher than player
         while(dTotals < pTotal && dTotals <=21){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
-            checkCards(dCards);
+            dCards = convertCards(dCards);
             dTotals = checkTotal(dCards);
-            console.log(dCards);
             document.getElementById("dcard").innerHTML = dCards;
             document.getElementById("dtotal").innerHTML = dTotals;
         }
@@ -139,41 +134,28 @@ $(function(){
         }
     }
 
-    //Print hand for both players in console
-    function printHand(){
-        console.log("Dealer's Hand:", dCards);
-        console.log("Player's Hand:", pCards);
-        console.log();
-    }
 
-    //Print total for both players in console
-    function printTotal(){
-        console.log("Dealer Total:", dTotal);
-        console.log("Player Total:", pTotal);
-        console.log();
-    }
+    deck = createDeck();
 
     //Deal Cards
-    Deal();
+    dCards = dealDealer();
+    pCards = dealPlayer();
 
-    //Print Cards
-    printHand();
+    oneCard = dCards[0];
 
     document.getElementById("dcard").innerHTML = oneCard;
     document.getElementById("pcard").innerHTML = pCards;
 
-    //Check cards
-    checkCards(dCards);
-    checkCards(pCards);
-    checkCards(oneCard);
+    //Convert cards to numerical values
+    dCards = convertCards(dCards);
+    pCards = convertCards(pCards);
+    oneCard = convertCards(oneCard);
 
     //Check Total
-    let dTotal = oneCard;
-    let dTotals = checkTotal(dCards);
-    let pTotal = checkTotal(pCards);
+    dTotal = oneCard;
+    dTotals = checkTotal(dCards);
+    pTotal = checkTotal(pCards);
 
-    //Print Total
-    printTotal();
 
     document.getElementById("dtotal").innerHTML = dTotal;
     document.getElementById("ptotal").innerHTML = pTotal;
