@@ -64,6 +64,10 @@ $(function(){
             cards[cards.indexOf(11)] = 1;
             total -= 10;
         }
+        return total;
+    }
+
+    function checkWinner(total, winner){
         if(total > 21 && winner === 0){
             let outcome = "Player bust! You lose!";
             console.log("Bust! Total is:", total);
@@ -94,8 +98,7 @@ $(function(){
         pCards.push(deck[Math.floor(Math.random() * deck.length)]);
         pCards = convertCards(pCards);
         pTotal = checkTotal(pCards);
-        console.log(pCards);
-        console.log(pTotal);
+        checkWinner(pTotal, winner);
         document.getElementById("pcard").innerHTML = pCards;
         document.getElementById("ptotal").innerHTML = pTotal;
     }
@@ -107,6 +110,7 @@ $(function(){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
             dCards = convertCards(dCards);
             dTotals = checkTotal(dCards);
+            checkWinner(dTotals, winner);
             document.getElementById("dcard").innerHTML = dCards;
             document.getElementById("dtotal").innerHTML = dTotals;
         }

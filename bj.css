@@ -6,26 +6,32 @@ body {
     text-align: center;
     margin-right: 24.5%;
     margin-left: 24.5%;
-    padding: 20px;
-    font-size: 75px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 10px;
+    font-size: 90px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color:black;
     background-color: rgb(243, 217, 213);
+    border-radius: 10px;
 }
 
 .game {
     margin: auto;
     width: 50%;
     background-color: lightgoldenrodyellow;
-    padding: 10px;
+    padding: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    border-radius: 10px;
 }
 
 .dealer {
-    font-size: 30px;
+    color: rgb(201, 13, 13);
 }
 
 .player {
-    font-size: 30px;
+    color: rgb(25, 121, 25);
 }
 
 .hitBtn {
@@ -38,4 +44,14 @@ body {
 
 .pAgainBtn {
     font-size: 18px;
+}
+
+.btn {
+    margin-top: 15px;
+}
+
+.result {
+    color: black;
+    margin-top: 15px;
+    font-size: 40px;
 }
