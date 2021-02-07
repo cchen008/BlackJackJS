@@ -10,7 +10,7 @@ $(function(){
 
 
     //Create the deck
-    function createDeck(){
+    const createDeck = () => {
         let set = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
         let deck = [];
 
@@ -25,7 +25,7 @@ $(function(){
     
 
     //Deal cards
-    function dealDealer(){
+    const dealDealer = () => {
         dCards.push(deck[Math.floor(Math.random() * deck.length)]);
         dCards.push(deck[Math.floor(Math.random() * deck.length)]);
         return dCards;
@@ -39,7 +39,7 @@ $(function(){
     
 
     //Convert cards to numeric value
-    function convertCards(cards){
+    const convertCards = (cards) => {
         let hand = [];
         for(let i = 0; i < cards.length; i++){
             if(cards[i] === "A"){
@@ -55,7 +55,7 @@ $(function(){
 
 
     //Check for aces and bust
-    function checkTotal(cards){
+    const checkTotal = (cards) => {
         let total = 0;
         for(let i = 0; i < cards.length; i++){
             total += cards[i];
@@ -67,7 +67,7 @@ $(function(){
         return total;
     }
 
-    function checkWinner(total, winner){
+    const checkWinner = (total, winner) => {
         if(total > 21 && winner === 0){
             let outcome = "Player bust! You lose!";
             console.log("Bust! Total is:", total);
@@ -94,7 +94,7 @@ $(function(){
     }
 
     //Player hit
-    function pHit(){
+    const pHit = () => {
         pCards.push(deck[Math.floor(Math.random() * deck.length)]);
         pCards = convertCards(pCards);
         pTotal = checkTotal(pCards);
@@ -104,7 +104,7 @@ $(function(){
     }
 
     //Player stay
-    function pStay(){
+    const pStay = () => {
         //Dealer hits until higher than player
         while(dTotals < pTotal && dTotals <=21){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
