@@ -2,7 +2,7 @@ body {
     background-image: url("https://www.casino.org/blog/wp-content/uploads/c2e1dca621b4e24408fdd18aef86fdba.jpg");
 }
 
-.title {
+#title {
     text-align: center;
     margin-right: 24.5%;
     margin-left: 24.5%;
@@ -16,7 +16,7 @@ body {
     border-radius: 10px;
 }
 
-.game {
+#game {
     margin: auto;
     width: 50%;
     background-color: lightgoldenrodyellow;
@@ -26,23 +26,16 @@ body {
     border-radius: 10px;
 }
 
-.dealer {
+#dealer {
     color: rgb(201, 13, 13);
 }
 
-.player {
+#player {
     color: rgb(25, 121, 25);
 }
 
-.hitBtn {
-    font-size: 18px;
-}
 
-.stayBtn {
-    font-size: 18px;
-}
-
-.pAgainBtn {
+.hit-stay-playBtn {
     font-size: 18px;
 }
 
@@ -50,7 +43,7 @@ body {
     margin-top: 15px;
 }
 
-.result {
+#outcome {
     color: black;
     margin-top: 15px;
     font-size: 40px;
