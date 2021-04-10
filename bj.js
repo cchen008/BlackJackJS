@@ -1,13 +1,11 @@
 $(function(){
 
     let dCards = [];
-    let oneCard = [];
     let pCards = [];
+    let oneCard = [];
     let winner = 0;
     let dTotal= 0;
-    let dTotals = 0;
     let pTotal = 0;
-
 
     //Create the deck
     const createDeck = () => {
@@ -101,19 +99,19 @@ $(function(){
     //Player stay
     const pStay = () => {
         //Dealer hits until higher than player
-        while(dTotals < pTotal && dTotals <=21){
+        while(dTotal < pTotal && dTotal <=21){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
             dCards = convertCards(dCards);
-            dTotals = checkTotal(dCards);
-            checkWinner(dTotals, winner);
+            dTotal = checkTotal(dCards);
+            checkWinner(dTotal, winner);
             document.getElementById("dcard").innerHTML = dCards;
-            document.getElementById("dtotal").innerHTML = dTotals;
+            document.getElementById("dtotal").innerHTML = dTotal;
         }
         //Dealer total higher than player
-        if(dTotals > pTotal && dTotals <= 21){
-            dTotals = checkTotal(dCards);
+        if(dTotal > pTotal && dTotal <= 21){
+            dTotal = checkTotal(dCards);
             document.getElementById("dcard").innerHTML = dCards;
-            document.getElementById("dtotal").innerHTML = dTotals;
+            document.getElementById("dtotal").innerHTML = dTotal;
 
             let outcome = "Dealer's hand is larger. You lose!";
             document.getElementById("outcome").innerHTML = outcome;
@@ -122,9 +120,9 @@ $(function(){
             });
         }
         //Tie outcome
-        else if(dTotals === pTotal){
+        else if(dTotal === pTotal){
             document.getElementById("dcard").innerHTML = dCards;
-            document.getElementById("dtotal").innerHTML = dTotals;
+            document.getElementById("dtotal").innerHTML = dTotal;
             let outcome = "Tie";
             document.getElementById("outcome").innerHTML = outcome;
             $("#playAgain").toggle().on('click',function(){
@@ -140,10 +138,13 @@ $(function(){
     dCards = deal();
     pCards = deal();
 
-    oneCard = dCards[0];
+    displayDealer = dCards;
+    displayPlayer = pCards;
+
+    oneCard.push(dCards[0]);
 
     document.getElementById("dcard").innerHTML = oneCard;
-    document.getElementById("pcard").innerHTML = pCards;
+    document.getElementById("pcard").innerHTML = displayPlayer;
 
     //Convert cards to numerical values
     dCards = convertCards(dCards);
@@ -152,9 +153,7 @@ $(function(){
 
     //Check Total
     dTotal = oneCard;
-    dTotals = checkTotal(dCards);
     pTotal = checkTotal(pCards);
-
 
     document.getElementById("dtotal").innerHTML = dTotal;
     document.getElementById("ptotal").innerHTML = pTotal;
