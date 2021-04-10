@@ -25,16 +25,11 @@ $(function(){
     
 
     //Deal cards
-    const dealDealer = () => {
-        dCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        dCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        return dCards;
-    }
-
-    function dealPlayer (){
-        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        pCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        return pCards;
+    const deal = () => {
+        let cards = [];
+        cards.push(deck[Math.floor(Math.random() * deck.length)]);
+        cards.push(deck[Math.floor(Math.random() * deck.length)]);
+        return cards;
     }
     
 
@@ -142,8 +137,8 @@ $(function(){
     deck = createDeck();
 
     //Deal Cards
-    dCards = dealDealer();
-    pCards = dealPlayer();
+    dCards = deal();
+    pCards = deal();
 
     oneCard = dCards[0];
 
