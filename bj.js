@@ -7,6 +7,9 @@ $(function(){
     let dTotal= 0;
     let pTotal = 0;
 
+    let convertDealer = [];
+    let convertPlayer = [];
+
     //Create the deck
     const createDeck = () => {
         let set = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
@@ -44,7 +47,7 @@ $(function(){
             else hand.push(parseInt(cards[i]));
         }
         return hand;
-    }
+    } 
 
 
     //Check for aces and bust
@@ -60,7 +63,7 @@ $(function(){
         return total;
     }
 
-    const checkWinner = (total, winner) => {
+    const checkBust = (total, winner) => {
         if(total > 21 && winner === 0){
             let outcome = "Player bust! You lose!";
             console.log("Bust! Total is:", total);
@@ -89,9 +92,9 @@ $(function(){
     //Player hit
     const pHit = () => {
         pCards.push(deck[Math.floor(Math.random() * deck.length)]);
-        pCards = convertCards(pCards);
-        pTotal = checkTotal(pCards);
-        checkWinner(pTotal, winner);
+        convertPlayer = convertCards(pCards);
+        pTotal = checkTotal(convertPlayer);
+        checkBust(pTotal, winner);
         document.getElementById("pcard").innerHTML = pCards;
         document.getElementById("ptotal").innerHTML = pTotal;
     }
@@ -101,15 +104,15 @@ $(function(){
         //Dealer hits until higher than player
         while(dTotal < pTotal && dTotal <=21){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
-            dCards = convertCards(dCards);
-            dTotal = checkTotal(dCards);
-            checkWinner(dTotal, winner);
+            convertDealer = convertCards(dCards);
+            dTotal = checkTotal(convertDealer);
+            checkBust(dTotal, winner);
             document.getElementById("dcard").innerHTML = dCards;
             document.getElementById("dtotal").innerHTML = dTotal;
         }
         //Dealer total higher than player
         if(dTotal > pTotal && dTotal <= 21){
-            dTotal = checkTotal(dCards);
+            dTotal = checkTotal(convertDealer);
             document.getElementById("dcard").innerHTML = dCards;
             document.getElementById("dtotal").innerHTML = dTotal;
 
@@ -138,22 +141,19 @@ $(function(){
     dCards = deal();
     pCards = deal();
 
-    displayDealer = dCards;
-    displayPlayer = pCards;
-
     oneCard.push(dCards[0]);
 
     document.getElementById("dcard").innerHTML = oneCard;
-    document.getElementById("pcard").innerHTML = displayPlayer;
+    document.getElementById("pcard").innerHTML = pCards;
 
     //Convert cards to numerical values
-    dCards = convertCards(dCards);
-    pCards = convertCards(pCards);
+    convertDealer = convertCards(dCards);
+    convertPlayer = convertCards(pCards);
     oneCard = convertCards(oneCard);
 
     //Check Total
     dTotal = oneCard;
-    pTotal = checkTotal(pCards);
+    pTotal = checkTotal(convertPlayer);
 
     document.getElementById("dtotal").innerHTML = dTotal;
     document.getElementById("ptotal").innerHTML = pTotal;
