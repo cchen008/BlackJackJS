@@ -100,10 +100,13 @@ $(function(){
     }
 
     //Player stay
-    const pStay = () => {
+    async function pStay(){
         dTotal = checkTotal(convertDealer);
+        document.getElementById("dcard").innerHTML = dCards;
+        document.getElementById("dtotal").innerHTML = dTotal;
         //Dealer hits until higher than player
         while(dTotal < pTotal && dTotal <=21){
+            await sleep(1500);
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
             convertDealer = convertCards(dCards);
             dTotal = checkTotal(convertDealer);
@@ -133,6 +136,10 @@ $(function(){
                 window.location.reload();
             });
         }
+    }
+
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
 
