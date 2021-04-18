@@ -101,6 +101,7 @@ $(function(){
 
     //Player stay
     const pStay = () => {
+        dTotal = checkTotal(convertDealer);
         //Dealer hits until higher than player
         while(dTotal < pTotal && dTotal <=21){
             dCards.push(deck[Math.floor(Math.random() * deck.length)]);
