@@ -6,10 +6,24 @@
     <title>Black Jack</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="bj.css">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div id="user-container">
+        <p class="game-heading">Welcome to BlackJackJS</p>
+        <p class="game-intro">Enter your name below to start playing. Players will start out with $1000.</p>
+        <form>
+            <label for="username">Username: </label>
+            <input type="text" id="username">
+            <button type="submit" id="user-btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <div id="game-container">
         <h1 id="title">Black Jack</h1>
+
+        <p id="player-money"></p>
+
         <div id="game">
             <div id="dealer">
                 Dealer Cards: <span id="dcard"></span> <br>
@@ -32,7 +46,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="scripts/bj.js"></script>
 </body>
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="bj.js"></script>
 </html>
